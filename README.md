@@ -1,2 +1,2 @@
 # NoBoom
-Beat Saber mod that disabled the bomb particle effect when you hit a bomb.
+Beat Saber mod that disables the bomb particle effect when you hit a bomb.
