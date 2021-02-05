@@ -8,7 +8,8 @@ namespace NoBoom
     {
         public static bool Prefix()
         {
-            return false;
+            bool Enabled = Configuration.PluginConfig.Instance.Enabled;
+            return !Enabled;
         }
     }
 }

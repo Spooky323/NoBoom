@@ -15,12 +15,7 @@ namespace NoBoom.Configuration
         /// </summary>
         public virtual void OnReload()
         {
-            if (Instance.Enabled)
-            {
-                Plugin.Instance.ApplyPatch();
-                return;
-            }
-            Plugin.Instance.RemovePatch();
+
         }
 
         /// <summary>

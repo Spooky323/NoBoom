@@ -1,12 +1,12 @@
 ﻿using System;
 using BeatSaberMarkupLanguage.Attributes;
 using BeatSaberMarkupLanguage.ViewControllers;
+using Zenject;
 
 namespace NoBoom
 {
-    class NoBoomViewController : BSMLResourceViewController
+    class NoBoomViewController : IInitializable
     {
-        public override string ResourceName => "NoBoom.Views.settings.bsml";
 
         [UIValue("enabled")]
         public bool Enabled
@@ -19,6 +19,11 @@ namespace NoBoom
                 // Called manually because BSIPA doesn't do it itself :'(
                 Configuration.PluginConfig.Instance.OnReload();
             }
+        }
+
+        public void Initialize()
+        {
+            BeatSaberMarkupLanguage.GameplaySetup.GameplaySetup.instance.AddTab("NoBoom", "NoBoom.Views.ModfierUI.bsml", this);
         }
     }
 }
