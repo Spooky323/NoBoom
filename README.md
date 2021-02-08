@@ -16,7 +16,7 @@ Beat Saber Plugin that disables the particle effect when hitting a bomb.
 
 For now, NoBoom can be only enabled and disabled. <br />
 You may change that through the UI in the modifier menu or the config file
-located in *Program Files\Steam\steamapps\common\Beat Saber\Plugins*
+located in *Program Files\Steam\steamapps\common\Beat Saber\UserData\NoBoom.json*
 
 ## Thanks
 
