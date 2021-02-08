@@ -1,6 +1,7 @@
 ﻿using System;
 using BeatSaberMarkupLanguage.Attributes;
 using BeatSaberMarkupLanguage.GameplaySetup;
+using NoBoom.Configuration;
 using Zenject;
 
 namespace NoBoom
@@ -10,8 +11,12 @@ namespace NoBoom
         [UIValue("enabled")]
         public bool Enabled
         {
-            get => Configuration.PluginConfig.Instance.Enabled;
-            set => Configuration.PluginConfig.Instance.Enabled = value;
+            get => PluginConfig.Instance.Enabled;
+            set
+            {
+                PluginConfig.Instance.Enabled = value;
+                PluginConfig.Instance.Changed();
+            }
         }
 
         public void Initialize()
