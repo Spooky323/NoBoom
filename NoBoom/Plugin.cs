@@ -2,25 +2,22 @@
 using IPA.Config;
 using IPA.Config.Stores;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-using UnityEngine.SceneManagement;
 using IPALogger = IPA.Logging.Logger;
 using HarmonyLib;
 using System.Reflection;
+using SiraUtil.Zenject;
+using NoBoom.Installers;
 
 namespace NoBoom
 {
-    [Plugin(RuntimeOptions.SingleStartInit)]
+    [Plugin(RuntimeOptions.DynamicInit)]
     public class Plugin
     {
         internal static Plugin Instance { get; private set; }
         internal static IPALogger Log { get; private set; }
 
         public const string HarmonyId = "com.github.Spooky323.NoBoom";
-        internal static readonly Harmony harmony = new Harmony("com.github.Spooky323.NoBoom");
+        internal static Harmony harmony;
 
         [Init]
         /// <summary>
@@ -28,46 +25,60 @@ namespace NoBoom
         /// [Init] methods that use a Constructor or called before regular methods like InitWithConfig.
         /// Only use [Init] with one Constructor.
         /// </summary>
-        public void Init(IPALogger logger)
+        public Plugin(IPALogger logger, Zenjector zenjector)
         {
             Instance = this;
             Log = logger;
-            Log.Info("NoBoom initialized.");
+            harmony = new Harmony(HarmonyId);
+            zenjector.OnMenu<NoBoomInstaller>();
         }
 
         #region BSIPA Config
-        //Uncomment to use BSIPA's config
-        /*
         [Init]
         public void InitWithConfig(Config conf)
         {
             Configuration.PluginConfig.Instance = conf.Generated<Configuration.PluginConfig>();
             Log.Debug("Config loaded");
         }
-        */
         #endregion
 
-        [OnStart]
-        public void OnApplicationStart()
+        [OnEnable]
+        public void OnEnable()
         {
-            Log.Debug("OnApplicationStart");
+            ApplyPatch();
+        }
+
+        [OnDisable]
+        public void OnDisable()
+        {
+            RemovePatch();
+
+        }
+        public void ApplyPatch()
+        {
             try
             {
                 harmony.PatchAll(Assembly.GetExecutingAssembly());
-                Log.Notice("NoBoom Patched to the game");
+                Log.Notice("NoBoom is Patched to the game");
             }
             catch (Exception e)
             {
-                Log.Info("Error patching NoBoom");
-                Log.Warn(e);
+                Log.Error("Error patching NoBoom");
+                Log.Error(e);
             }
         }
-
-        [OnExit]
-        public void OnApplicationQuit()
+        public void RemovePatch()
         {
-            Log.Debug("OnApplicationQuit");
-
+            try
+            {
+                harmony.UnpatchAll(HarmonyId);
+                Log.Notice("NoBoom is now UnPatched");
+            }
+            catch (Exception e)
+            {
+                Log.Error("Error UnPatching NoBoom");
+                Log.Error(e);
+            }
         }
     }
 }

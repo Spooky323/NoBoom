@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using HarmonyLib;
 namespace NoBoom
 {
@@ -12,7 +8,8 @@ namespace NoBoom
     {
         public static bool Prefix()
         {
-            return false;
+            bool Enabled = Configuration.PluginConfig.Instance.Enabled;
+            return !Enabled;
         }
     }
 }
