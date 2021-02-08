@@ -1,5 +1,5 @@
 # NoBoom
-Beat Saber Plugin that disables the bomb particle effect when hitting a bomb.
+Beat Saber Plugin that disables the particle effect when hitting a bomb.
 
 ## Installation
 
