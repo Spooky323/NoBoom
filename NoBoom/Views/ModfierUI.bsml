@@ -1,5 +1,0 @@
-﻿﻿<bg xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='https://monkeymanboy.github.io/BSML-Docs/ https://raw.githubusercontent.com/monkeymanboy/BSML-Docs/gh-pages/BSMLSchema.xsd'>
-<modifier-container child-control-width='true' child-expand-width='true'>
-	<modifier value='enable' text='Enabled'></modifier>
-</modifier-container>
-</bg>

@@ -115,7 +115,7 @@
   <ItemGroup>
     <Compile Include="HarmonyPatches\BombEffectPatch.cs" />
     <Compile Include="NoBoomInstaller.cs" />
-    <Compile Include="NoBoomViewController.cs" />
+    <Compile Include="ModifierViewController.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Configuration\PluginConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -127,7 +127,7 @@
     <None Include="Directory.Build.props" Condition="Exists('Directory.Build.props')" />
     <None Include="Directory.Build.targets" Condition="Exists('Directory.Build.targets')" />
     <None Include="NoBoom.csproj.user" Condition="Exists('NoBoom.csproj.user')" />
-    <EmbeddedResource Include="Views\ModfierUI.bsml" />
+    <EmbeddedResource Include="Views\ModifierView.bsml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="BeatSaberModdingTools.Tasks">
