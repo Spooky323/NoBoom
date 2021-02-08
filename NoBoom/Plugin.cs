@@ -5,8 +5,8 @@ using System;
 using IPALogger = IPA.Logging.Logger;
 using HarmonyLib;
 using System.Reflection;
-using BeatSaberMarkupLanguage.Settings;
 using SiraUtil.Zenject;
+using NoBoom.Installers;
 
 namespace NoBoom
 {
@@ -25,14 +25,14 @@ namespace NoBoom
         /// [Init] methods that use a Constructor or called before regular methods like InitWithConfig.
         /// Only use [Init] with one Constructor.
         /// </summary>
-        public Plugin(IPALogger logger, Zenjector zenjector )
+        public Plugin(IPALogger logger, Zenjector zenjector)
         {
             Instance = this;
-            zenjector.OnMenu<NoBoomInstaller>();
+            Log = logger;
             harmony = new Harmony(HarmonyId);
-
+            zenjector.OnMenu<NoBoomInstaller>();
         }
-        
+
         #region BSIPA Config
         [Init]
         public void InitWithConfig(Config conf)
