@@ -21,5 +21,5 @@ located in *Program Files\Steam\steamapps\common\Beat Saber\Plugins*
 ## Thanks
 
 Special thanks to [PixelBoom](https://github.com/rithik-b) for helping me with the UI and cleaning the code,<br />
-and being a good friend. None of that would happen without him.<br />
+and being a good friend. None of this would have happened without him.<br />
 And TJ for testing and helping me format the release.
